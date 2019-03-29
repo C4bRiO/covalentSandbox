@@ -1,0 +1,119 @@
+<td-layout>
+	<td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent" name="Firstname Lastname" email="firstname.lastname@company.com">
+		<mat-nav-list>
+			<a *ngFor="let item of routes" mat-list-item [routerLink]="item.route">
+				<mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+		</mat-nav-list>
+	</td-navigation-drawer>
+	<td-layout-nav logo="assets:covalent" [toolbarTitle]="name" navigationRoute="/">
+		<button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span flex></span>
+      <a mat-icon-button matTooltip="Docs" matTooltipPosition="before" href="https://teradata.github.io/covalent/" target="_blank"><mat-icon>chrome_reader_mode</mat-icon></a>
+		</div>
+		<td-layout-manage-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+		 [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+			<mat-toolbar td-sidenav-content>
+        <span layout="row" layout-align="center center" class="cursor-pointer" [routerLink]="['/patterns']">
+				<mat-icon class="push-left-xs">extension</mat-icon>
+				<span class="push-left">Patterns</span>
+        </span>
+			</mat-toolbar>
+			<mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+				<h3 matSubheader>Layouts</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="layouts">
+					<a mat-list-item [routerLink]="['/patterns', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+				<h3 matSubheader>Common Patterns</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="patterns">
+					<a mat-list-item [routerLink]="['/patterns', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+			</mat-nav-list>
+			<mat-toolbar>
+				<div layout="row" layout-align="start center" flex>
+					<button mat-icon-button tdLayoutManageListOpen [hideWhenOpened]="true">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+					<span>All Patterns</span>
+					<span flex></span>
+				</div>
+			</mat-toolbar>
+
+			<div class="pad">
+				<div layout="row" layout-align="start center">
+					<h3 flex class="mat-subheading-2 tc-grey-700 text-upper push-left-sm push-top-xs push-bottom-xs">Layouts</h3>
+				</div>
+				<mat-divider></mat-divider>
+				<div layout="column">
+					<div layout="row" layout-wrap>
+						<ng-template let-item let-index="index" ngFor [ngForOf]="layouts">
+							<div class="fav-list-item" flex-gt-xs="25" flex-xs="50">
+								<mat-card href class="mat-card-colored">
+									<mat-toolbar [ngClass]="'bgc-' + item.color" layout="column" layout-align="center center" layout-padding [routerLink]="[item.route]">
+										<mat-icon>{{item.icon}}</mat-icon>
+									</mat-toolbar>
+									<div class="card-content" [routerLink]="[item.route]">
+										<div layout="column" layout-padding>
+											<div class="mat-subheading-2 text-truncate push-none" [matTooltip]="item.title" matTooltipShowDelay="1000">{{item.title}}</div>
+											<div class="mat-caption tc-grey-600 text-truncate" [title]="item.description"> item.description </div>
+										</div>
+									</div>
+									<mat-divider></mat-divider>
+									<div layout="row" layout-align="end center">
+										<a mat-icon-button>
+											<mat-icon color="primary">code</mat-icon>
+										</a>
+										<a mat-icon-button>
+											<mat-icon color="primary">launch</mat-icon>
+										</a>
+									</div>
+								</mat-card>
+							</div>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+			<div class="pad">
+				<div layout="row" layout-align="start center">
+					<h3 flex class="mat-subheading-2 tc-grey-700 text-upper push-left-sm push-top-xs push-bottom-xs">Common Patterns</h3>
+				</div>
+				<mat-divider></mat-divider>
+				<div layout="column">
+					<div layout="row" layout-wrap>
+						<ng-template let-item let-index="index" ngFor [ngForOf]="patterns">
+							<div class="fav-list-item" flex-gt-xs="25" flex-xs="50">
+								<mat-card href class="mat-card-colored">
+									<mat-toolbar [ngClass]="'bgc-' + item.color" layout="column" layout-align="center center" layout-padding [routerLink]="[item.route]">
+										<mat-icon>{{item.icon}}</mat-icon>
+									</mat-toolbar>
+									<div class="card-content" [routerLink]="[item.route]">
+										<div layout="column" layout-padding>
+											<div class="mat-subheading-2 text-truncate push-none" [matTooltip]="item.title" matTooltipShowDelay="1000">{{item.title}}</div>
+											<div class="mat-caption tc-grey-600 text-truncate" [title]="item.description"> item.description </div>
+										</div>
+									</div>
+									<mat-divider></mat-divider>
+									<div layout="row" layout-align="end center">
+										<a mat-icon-button>
+											<mat-icon color="primary">code</mat-icon>
+										</a>
+										<a mat-icon-button>
+											<mat-icon color="primary">launch</mat-icon>
+										</a>
+									</div>
+								</mat-card>
+							</div>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+
+		</td-layout-manage-list>
+	</td-layout-nav>
+</td-layout>

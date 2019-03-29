@@ -1,0 +1,75 @@
+import { Routes, RouterModule } from '@angular/router';
+import { OverviewComponent } from './overview/overview.component';
+import { ComponentsComponent } from './components/components.component';
+import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
+import { StepperComponent } from './components/stepper/stepper.component';
+import { FileInputComponent } from './components/file-input/file-input.component';
+import { ChipsComponent } from './components/chips/chips.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { DialogsComponent } from './components/dialogs/dialogs.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { VirtualScrollComponent } from './components/virtual-scroll/virtual-scroll.component';
+import { JsonComponent } from './components/json/json.component';
+import { PagingComponent } from './components/paging/paging.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { SearchComponent } from './components/search/search.component';
+import { MediaQueriesComponent } from './components/media-queries/media-queries.component';
+import { DirectivesComponent } from './components/directives/directives.component';
+import { PipesComponent } from './components/pipes/pipes.component';
+import { AnimationsComponent } from './components/animations/animations.component';
+import { SyntaxHighlightingComponent } from './components/syntax-highlighting/syntax-highlighting.component';
+import { MarkdownParserComponent } from './components/markdown-parser/markdown-parser.component';
+import { DynamicFormsComponent } from './components/dynamic-forms/dynamic-forms.component';
+import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
+import { HttpComponent } from './components/http/http.component';
+import { FileUploadButtonComponent } from './components/file-upload-button/file-upload-button.component';
+import { PatternsComponent } from './patterns/patterns.component';
+import { CardsComponent } from './patterns/cards/cards.component';
+import { AlertsComponent } from './patterns/alerts/alerts.component';
+import { ManagementListComponent } from './patterns/management-list/management-list.component';
+import { NavigationDrawerComponent } from './patterns/navigation-drawer/navigation-drawer.component';
+import { SidesheetComponent } from './patterns/sidesheet/sidesheet.component';
+import { EmptyStateComponent } from './patterns/empty-state/empty-state.component';
+import { StepperFormComponent } from './patterns/stepper-form/stepper-form.component';
+
+const appRoutes: Routes = [
+  { path: 'overview', component: OverviewComponent },
+  { path: 'components', component: ComponentsComponent },
+  { path: 'components/stepper', component: StepperComponent },
+  { path: 'components/expansion-panel', component: ExpansionPanelComponent },
+  { path: 'components/file-input', component: FileInputComponent },
+  { path: 'components/file-upload-button', component: FileUploadButtonComponent },
+  { path: 'components/chips', component: ChipsComponent },
+  { path: 'components/loading', component: LoadingComponent },
+  { path: 'components/dialogs', component: DialogsComponent },
+  { path: 'components/data-table', component: DataTableComponent },
+  { path: 'components/virtual-scroll', component: VirtualScrollComponent },
+  { path: 'components/json', component: JsonComponent },
+  { path: 'components/paging', component: PagingComponent },
+  { path: 'components/notifications', component: NotificationsComponent },
+  { path: 'components/messages', component: MessagesComponent },
+  { path: 'components/search', component: SearchComponent },
+  { path: 'components/media-queries', component: MediaQueriesComponent },
+  { path: 'components/directives', component: DirectivesComponent },
+  { path: 'components/pipes', component: PipesComponent },
+  { path: 'components/animations', component: AnimationsComponent },
+  { path: 'components/syntax-highlighting', component: SyntaxHighlightingComponent },
+  { path: 'components/markdown-parser', component: MarkdownParserComponent },
+  { path: 'components/dynamic-forms', component: DynamicFormsComponent },
+  { path: 'components/code-editor', component: CodeEditorComponent },
+  { path: 'components/markdown-editor', component: MarkdownEditorComponent },
+  { path: 'components/http', component: HttpComponent },
+  { path: 'patterns', component: PatternsComponent },
+  { path: 'patterns/cards', component: CardsComponent },
+  { path: 'patterns/alerts', component: AlertsComponent },
+  { path: 'patterns/management-list', component: ManagementListComponent },
+  { path: 'patterns/navigation-drawer', component: NavigationDrawerComponent },
+  { path: 'patterns/sidesheet', component: SidesheetComponent },
+  { path: 'patterns/empty-state', component: EmptyStateComponent },
+  { path: 'patterns/stepper', component: StepperFormComponent },
+  { path: '**', redirectTo: 'overview' }
+];
+
+export const routing = RouterModule.forRoot(appRoutes);

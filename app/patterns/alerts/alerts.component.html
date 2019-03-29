@@ -1,0 +1,141 @@
+<td-layout>
+	<td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent" name="Firstname Lastname" email="firstname.lastname@company.com">
+		<mat-nav-list>
+			<a *ngFor="let item of routes" mat-list-item [routerLink]="['/patterns', item.route]">
+				<mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+		</mat-nav-list>
+	</td-navigation-drawer>
+	<td-layout-nav logo="assets:covalent" [toolbarTitle]="name" navigationRoute="/">
+		<button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span flex></span>
+      <a mat-icon-button matTooltip="Docs" matTooltipPosition="before" href="https://teradata.github.io/covalent/" target="_blank"><mat-icon>chrome_reader_mode</mat-icon></a>
+		</div>
+		<td-layout-manage-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+		 [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+			<mat-toolbar td-sidenav-content>
+				<span layout="row" layout-align="center center" class="cursor-pointer" [routerLink]="['/patterns']">
+				<mat-icon class="push-left-xs">extension</mat-icon>
+				<span class="push-left">Patterns</span>
+				</span>
+			</mat-toolbar>
+			<mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+				<h3 matSubheader>Layouts</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="layouts">
+					<a mat-list-item [routerLink]="['/patterns', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+				<h3 matSubheader>Common Patterns</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="patterns">
+					<a mat-list-item [routerLink]="['/patterns', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+			</mat-nav-list>
+			<mat-toolbar>
+				<div layout="row" layout-align="start center" flex>
+					<button mat-icon-button tdLayoutManageListOpen [hideWhenOpened]="true">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+					<span>Alerts</span>
+					<span flex></span>
+					<a mat-icon-button href="https://stackblitz.com/edit/covalent-sandbox?file=app%2Fpatterns%2Falerts%2Falerts.component.html"
+					 target="_blank" matTooltip="Jump to code" matTooltipPosition="before">
+						<mat-icon>code</mat-icon>
+					</a>
+					<a mat-icon-button href="https://covalent-sandbox.stackblitz.io/patterns/alerts" target="_blank" matTooltip="View pattern"
+					 matTooltipPosition="before">
+						<mat-icon>launch</mat-icon>
+					</a>
+				</div>
+			</mat-toolbar>
+			<div layout-gt-sm="row" tdMediaToggle="gt-xs">
+				<div flex-gt-sm>
+					<mat-card>
+						<mat-card-title>Dialogs</mat-card-title>
+						<mat-card-subtitle>Notification with call to action</mat-card-subtitle>
+						<mat-divider></mat-divider>
+						<mat-card-content>
+							<button class="text-upper" mat-raised-button color="warn" (click)="openAlert()">Show Error</button>
+							<button class="text-upper push-left" mat-raised-button color="accent" (click)="openConfirm()">Show Confirm</button>
+						</mat-card-content>
+					</mat-card>
+					<mat-card>
+						<mat-card-title>Toast</mat-card-title>
+						<mat-card-subtitle>Brief, floating notification with optional user interaction</mat-card-subtitle>
+						<mat-divider></mat-divider>
+						<mat-card-content>
+							<button class="text-upper" mat-raised-button color="primary" (click)="showSnackBar()">Show toast</button>
+						</mat-card-content>
+					</mat-card>
+					<mat-card>
+						<mat-card-title>Inline Errors</mat-card-title>
+						<mat-card-subtitle>For forms and inputs use inline errors for contextual feedback.</mat-card-subtitle>
+						<mat-divider></mat-divider>
+						<mat-card-content>
+							<form #myForm="ngForm">
+								<div layout-gt-xs="row" layout-margin>
+									<mat-form-field flex>
+										<input matInput #firstNameForm="ngModel" placeholder="Firstname" [(ngModel)]="first_name" name="first_name" required tdAutoTrim/>
+										<mat-hint>
+											<span [hidden]="firstNameForm.pristine || !firstNameForm.errors?.required" class="tc-red-600">Required</span>
+										</mat-hint>
+									</mat-form-field>
+									<mat-form-field flex>
+										<input matInput #lastNameForm="ngModel" flex placeholder="Lastname" [(ngModel)]="last_name" name="last_name" required tdAutoTrim/>
+										<mat-hint>
+											<span [hidden]="lastNameForm.pristine || !lastNameForm.errors?.required" class="tc-red-600">Required</span>
+										</mat-hint>
+									</mat-form-field>
+								</div>
+								<div layout-gt-xs="row" layout-margin>
+									<mat-form-field flex="40">
+										<input matInput #addressEl #addressForm="ngModel" placeholder="Address" [(ngModel)]="address" name="address" required maxlength="50"
+										 tdAutoTrim/>
+										<mat-hint>
+											<span [hidden]="addressForm.pristine || !addressForm.errors?.required" class="tc-red-600">Required</span>
+										</mat-hint>
+										<mat-hint align="end">0 / 50</mat-hint>
+									</mat-form-field>
+									<mat-form-field flex="35">
+										<input matInput placeholder="City" [(ngModel)]="city" name="city" tdAutoTrim/>
+									</mat-form-field>
+								</div>
+								<div layout-gt-xs="row" layout-margin>
+									<mat-form-field flex="20">
+										<input matInput #stateForm="ngModel" placeholder="State" [(ngModel)]="state" name="state" pattern="[A-Z]{2}" maxlength="2"
+										 required tdAutoTrim/>
+										<mat-hint>
+											<span [hidden]="stateForm.pristine" class="tc-red-600">
+            <span [hidden]="!stateForm.errors?.required">Required</span>
+											<span [hidden]="!stateForm.errors?.pattern">2 uppercase letters</span>
+											</span>
+										</mat-hint>
+										<mat-hint align="end">e.g CA</mat-hint>
+									</mat-form-field>
+									<mat-form-field flex="25">
+										<input matInput #zipForm="ngModel" placeholder="Zip" [(ngModel)]="zip" name="zip" pattern="\d{5}" maxlength="5" required/>
+										<mat-hint>
+											<span [hidden]="zipForm.pristine" class="tc-red-600">
+                    <span [hidden]="!zipForm.errors?.required">Required</span>
+											<span [hidden]="!zipForm.errors?.pattern">5 digits pls</span>
+											</span>
+										</mat-hint>
+										<mat-hint align="end">e.g 92101</mat-hint>
+									</mat-form-field>
+								</div>
+								<mat-divider></mat-divider>
+								<div class="inset">
+									<button mat-raised-button color="accent" [disabled]="!myForm.valid" class="text-upper">Submit Form</button>
+								</div>
+							</form>
+						</mat-card-content>
+					</mat-card>
+				</div>
+			</div>
+		</td-layout-manage-list>
+	</td-layout-nav>
+</td-layout>

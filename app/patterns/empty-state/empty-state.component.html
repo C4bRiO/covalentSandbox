@@ -1,0 +1,101 @@
+<td-layout>
+	<td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent" name="Firstname Lastname" email="firstname.lastname@company.com">
+		<mat-nav-list>
+			<a *ngFor="let item of routes" mat-list-item [routerLink]="['/patterns', item.route]">
+				<mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+		</mat-nav-list>
+	</td-navigation-drawer>
+	<td-layout-nav logo="assets:covalent" [toolbarTitle]="name" navigationRoute="/">
+		<button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span flex></span>
+      <a mat-icon-button matTooltip="Docs" matTooltipPosition="before" href="https://teradata.github.io/covalent/" target="_blank"><mat-icon>chrome_reader_mode</mat-icon></a>
+		</div>
+		<td-layout-manage-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+		 [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+			<mat-toolbar td-sidenav-content>
+				<span layout="row" layout-align="center center" class="cursor-pointer" [routerLink]="['/patterns']">
+				<mat-icon class="push-left-xs">extension</mat-icon>
+				<span class="push-left">Patterns</span>
+				</span>
+			</mat-toolbar>
+			<mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+				<h3 matSubheader>Layouts</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="layouts">
+					<a mat-list-item [routerLink]="['/patterns', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+				<h3 matSubheader>Common Patterns</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="patterns">
+					<a mat-list-item [routerLink]="['/patterns', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+			</mat-nav-list>
+			<mat-toolbar>
+				<div layout="row" layout-align="start center" flex>
+					<button mat-icon-button tdLayoutManageListOpen [hideWhenOpened]="true">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+					<span>Empty State</span>
+					<span flex></span>
+					<a mat-icon-button href="https://stackblitz.com/edit/covalent-sandbox?file=app%2Fpatterns%2Fempty-state%2Fempty-state.component.html"
+					 target="_blank" matTooltip="Jump to code" matTooltipPosition="before">
+						<mat-icon>code</mat-icon>
+					</a>
+					<a mat-icon-button href="https://covalent-sandbox.stackblitz.io/patterns/empty-state" target="_blank" matTooltip="View pattern"
+					 matTooltipPosition="before">
+						<mat-icon>launch</mat-icon>
+					</a>
+				</div>
+			</mat-toolbar>
+			<div layout-gt-sm="row" class="pad-sm">
+				<mat-card flex-gt-sm>
+					<mat-card-title>Empty state due to filters</mat-card-title>
+					<mat-card-subtitle>Use a primary action button to remove the filters</mat-card-subtitle>
+					<mat-card-content>
+						<!-- Start pattern -->
+						<div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+							<mat-icon matListAvatar class="text-super push-bottom">image</mat-icon>
+							<h2>No photos</h2>
+							<h3>There are no photos with your applied filters</h3>
+							<button mat-raised-button color="accent" class="text-upper">Remove Filters</button>
+						</div>
+						<!-- end pattern -->
+					</mat-card-content>
+				</mat-card>
+				<mat-card flex-gt-sm>
+					<mat-card-title>Empty state due to no initial content</mat-card-title>
+					<mat-card-subtitle>Use primary and secondary buttons for additonal actions</mat-card-subtitle>
+					<mat-card-content>
+						<!-- Start pattern -->
+						<div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+							<mat-icon matListAvatar class="text-super push-bottom">chrome_reader_mode</mat-icon>
+							<h2>No blog posts</h2>
+							<h3>You have not created any posts</h3>
+							<button mat-raised-button color="accent" class="text-upper">Create Post</button>
+							<button mat-button class="text-upper push-top">Create Category</button>
+						</div>
+						<!-- end pattern -->
+					</mat-card-content>
+				</mat-card>
+				<mat-card flex-gt-sm>
+					<mat-card-title>Empty state due to no possible data</mat-card-title>
+					<mat-card-subtitle>Display an informative message when there is way to add data</mat-card-subtitle>
+					<mat-card-content>
+						<!-- Start pattern -->
+						<div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+							<mat-icon matListAvatar class="text-super push-bottom">receipt</mat-icon>
+							<h2>No logs</h2>
+							<h3>There have been no log entries</h3>
+						</div>
+						<!-- end pattern -->
+					</mat-card-content>
+				</mat-card>
+			</div>
+		</td-layout-manage-list>
+	</td-layout-nav>
+</td-layout>

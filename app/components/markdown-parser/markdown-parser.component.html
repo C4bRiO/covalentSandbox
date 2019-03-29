@@ -1,0 +1,68 @@
+<td-layout>
+	<td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent" name="Firstname Lastname" email="firstname.lastname@company.com">
+		<mat-nav-list>
+			<a *ngFor="let item of routes" mat-list-item [routerLink]="item.route">
+				<mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+		</mat-nav-list>
+	</td-navigation-drawer>
+	<td-layout-nav logo="assets:covalent" [toolbarTitle]="name" navigationRoute="/">
+		<button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span flex></span>
+      <a mat-icon-button matTooltip="Docs" matTooltipPosition="before" href="https://teradata.github.io/covalent/" target="_blank"><mat-icon>chrome_reader_mode</mat-icon></a>
+		</div>
+		<td-layout-manage-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+		 [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+			<mat-toolbar td-sidenav-content>
+        <span layout="row" layout-align="center center" class="cursor-pointer" [routerLink]="['/components']">
+				<mat-icon class="push-left-xs">picture_in_picture</mat-icon>
+				<span class="push-left">Components</span>
+        </span>
+			</mat-toolbar>
+			<mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+				<h3 matSubheader>Core Components</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="components">
+					<a mat-list-item [routerLink]="['/components', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+				<h3 matSubheader>Optional Components</h3>
+				<ng-template let-item let-last="last" ngFor [ngForOf]="optional">
+					<a mat-list-item [routerLink]="['/components', item.route]">
+						<mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+					</a>
+				</ng-template>
+			</mat-nav-list>
+			<mat-toolbar>
+				<div layout="row" layout-align="start center" flex>
+					<button mat-icon-button tdLayoutManageListOpen [hideWhenOpened]="true">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+					<span>Markdown Parser</span>
+					<span flex></span>
+					<a mat-icon-button href="https://stackblitz.com/edit/covalent-sandbox?file=app%2Fcomponents%2Fmarkdown-parser%2Fmarkdown-parser.component.html"
+					 target="_blank" matTooltip="Jump to code" matTooltipPosition="before">
+						<mat-icon>code</mat-icon>
+					</a>
+				</div>
+			</mat-toolbar>
+			
+			<mat-card flex-gt-sm>
+        <mat-card-title>Title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <!-- Start pattern -->
+          <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+            <mat-icon matListAvatar class="text-super push-bottom">build</mat-icon>
+            <h2>In work</h2>
+            <h3>This pattern is in work, check back soon</h3>
+          </div>
+          <!-- end pattern -->
+        </mat-card-content>
+      </mat-card>
+		</td-layout-manage-list>
+	</td-layout-nav>
+</td-layout>
